@@ -1,12 +1,4 @@
-# Ansible speech tutorial
-
-> Sample Ansible cluster in Docker for illustrating features of Ansible CLI.
-
-## How to use it
-
-Run `start.sh -h` to see the help message.
-
-## Contributing
+# Contributing
 
 How to get involved:
 
@@ -22,14 +14,10 @@ Pull requests are **highly appreciated**.
 
 Solve a problem. Features are great, but even better is cleaning-up and fixing issues in the code that you discover.
 
-### Versioning
+## Versioning
 
 This project is maintained by using the [Semantic Versioning Specification (SemVer)](http://semver.org).
 
-### Contributors
+## Contributors
 
 Gabriele Diener [@gadiener](https://github.com/gadiener)
-
-## Copyright and license
-
-Copyright 2018 [Gabriele Diener](https://gdiener.com) under the [MIT license](LICENSE.md).
