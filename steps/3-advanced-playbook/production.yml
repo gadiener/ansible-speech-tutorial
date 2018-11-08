@@ -1,0 +1,17 @@
+---
+
+- hosts: application
+  user: root
+  roles:
+    - php
+    - role: nginx
+      proxy_pass_dest: php-local
+
+- hosts: loadbalancer
+  user: root
+  roles:
+    - role: nginx
+      upsteams_backend:
+        - host1.caffeina.com
+        - host2.caffeina.com
+      proxy_pass_dest: backend

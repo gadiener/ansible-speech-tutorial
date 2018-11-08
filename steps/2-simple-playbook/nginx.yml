@@ -1,0 +1,27 @@
+---
+
+- hosts: loadbalancer
+  user: root
+  vars:
+    - docroot: /var/www/caffeina.com/public
+  tasks:
+    - name: Install Nginx
+      apt:
+        pkg: nginx
+        state: present
+        force_apt_get: true
+        update_cache: true
+      notify:
+        - Start Nginx
+
+    - name: Create Web Root
+      file:
+        path: '{{ docroot }}'
+        mode: 775
+        state: directory
+        owner: www-data
+        group: www-data
+
+  handlers:
+    - name: Start Nginx
+      command: service nginx start

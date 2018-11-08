@@ -1,0 +1,38 @@
+---
+
+- name: Install Nginx
+  apt:
+    pkg: nginx
+    state: present
+    force_apt_get: true
+    update_cache: true
+  notify:
+    - Start Nginx
+
+- name: Copying NGINX conf
+  template:
+    src: "default.conf.j2"
+    dest: "/etc/nginx/sites-enabled/default"
+    owner: "{{ services_file_user }}"
+    group: "{{ services_file_user }}"
+    mode: "0644"
+  notify: Reload Nginx
+
+- name: Upload fake index file
+  copy:
+    src: "index.php"
+    dest: "/var/www/index.php"
+    owner: "{{ services_file_user }}"
+    group: "{{ services_file_user }}"
+    force: no
+    mode: "0644"
+
+- name: Add host in local hosts file
+  lineinfile:
+    path: /etc/hosts
+    regexp: '^127\.0\.0\.1'
+    line: "127.0.0.1 localhost php-local {{ inventory_hostname }}"
+    owner: root
+    group: root
+    unsafe_writes: true
+

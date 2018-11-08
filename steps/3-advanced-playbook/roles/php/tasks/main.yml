@@ -1,0 +1,36 @@
+---
+
+- name: Install PHP
+  apt:
+    pkg: php-fpm
+    state: present
+    force_apt_get: true
+    update_cache: true
+  notify:
+    - Start PHP
+
+- name: Create Web Root
+  file:
+    path: '/var/www'
+    mode: '0775'
+    state: directory
+    owner: "{{ services_file_user }}"
+    group: "{{ services_file_user }}"
+
+- name: Upload index file
+  copy:
+    src: "index.php"
+    dest: "/var/www/index.php"
+    owner: "{{ services_file_user }}"
+    group: "{{ services_file_user }}"
+    mode: '0644'
+
+- name: Upload conf file
+  copy:
+    src: "www.conf"
+    dest: "/etc/php/7.0/fpm/pool.d/www.conf"
+    owner: "{{ services_file_user }}"
+    group: "{{ services_file_user }}"
+    mode: '0644'
+  notify:
+    - Reload PHP

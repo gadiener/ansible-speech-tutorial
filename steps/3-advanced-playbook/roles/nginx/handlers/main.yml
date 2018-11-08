@@ -1,0 +1,7 @@
+---
+
+- name: Start Nginx
+  command: service nginx start
+
+- name: Reload Nginx
+  command: service nginx reload

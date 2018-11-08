@@ -1,0 +1,7 @@
+---
+
+- name: Start PHP
+  command: service php7.0-fpm start
+
+- name: Reload PHP
+  command: service php7.0-fpm reload

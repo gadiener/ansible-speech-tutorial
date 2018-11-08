@@ -1,0 +1,7 @@
+---
+
+nginx_version: 11.4
+upsteams_backend:
+  - localhost
+proxy_pass_dest: php-local
+services_file_user: root
